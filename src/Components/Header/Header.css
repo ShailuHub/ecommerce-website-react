@@ -1,0 +1,40 @@
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.header-container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.nav-link p {
+  font-size: 2rem;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0.8rem;
+}
+
+.nav-link p::after {
+  content: "";
+  width: 0;
+  position: absolute;
+  left: 0;
+  bottom: -0.3rem;
+  transition: all 0.3s linear;
+  border-bottom: 0.3rem solid #373737;
+}
+
+.nav-link p:hover::after {
+  width: 100%;
+}
+
+#navbar-cart-button {
+  background-color: var(--secondary-color);
+  font-size: 2rem;
+}
+
+#navbar-badge-count {
+  background-color: var(--white-color);
+  color: var(--heading-color-primary);
+  padding: 0.5rem;
+}

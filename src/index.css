@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Poppins:wght@200&family=Quicksand:wght@300;400&family=Roboto&display=swap");
+
+/* font-family: 'Inter', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Quicksand', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1 rem = 10px */
+
+html {
+  font-size: 62.5%;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/* theme */
+:root {
+  --main-color: #0062ff;
+  --supporting-color: #ebf3fe;
+  --font-color: #424242;
+  --bg-color: #0e1630;
+  --heading-color-primary: #000a19;
+  --para-color: #504e4d;
+  --white-color: #ffffff;
+  --green-color: #01d293;
+  --secondary-color: #18a8cc;
+  --heading-color-secondary: #02043e;
+  --btn-hover-background-color: #003b99;
+  --btn-boxshadow: rgba(255, 255, 255, 0.8) 0px 0px 10px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* Custom Scrollbar */
+/* For webkit-based browsers */
+/* You can customize these properties to fit your design */
+
+/* Track (the area the scrollbar moves in) */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #01d293; /* Color of the handle */
+  border-radius: 6px; /* Rounded handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000a19; /* Change color on hover */
+}
