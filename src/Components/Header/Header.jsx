@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Navbar, Col, Nav } from "react-bootstrap";
 import "./Header.css";
 import Logo from "../../UI/Logo";
+import cartContext from "../../Store/cart-context";
+import AuthContext from "../../Store/auth-context";
+import { Link } from "react-router-dom";
 
 const Header = ({ onShowCart }) => {
+  const cartCtx = useContext(cartContext);
+  const authCtx = useContext(AuthContext);
+  const userLoggedIn = authCtx.isLoggedIn;
   return (
     <React.Fragment>
       <Container fluid className="header-container">
@@ -16,30 +22,40 @@ const Header = ({ onShowCart }) => {
                     <Logo />
                   </Navbar.Brand>
                   <Nav className="nav">
-                    <Nav.Link className="nav-link">
+                    <Nav.Link as={Link} to="/" className="nav-link">
                       <p>Home</p>
                     </Nav.Link>
-                    <Nav.Link className="nav-link">
-                      <p>Home</p>
+                    <Nav.Link as={Link} to="/store" className="nav-link">
+                      <p>Store</p>
                     </Nav.Link>
-                    <Nav.Link className="nav-link">
-                      <p>Home</p>
+                    <Nav.Link as={Link} to="/about" className="nav-link">
+                      <p>About</p>
                     </Nav.Link>
-                    <Nav.Link className="nav-link">
-                      <p>Home</p>
+                    <Nav.Link as={Link} to="/contact-us" className="nav-link">
+                      <p>Contact Us</p>
                     </Nav.Link>
                   </Nav>
-                  <button
-                    type="button"
-                    className="btn text-white"
-                    id="navbar-cart-button"
-                    onClick={() => onShowCart(true)}
-                  >
-                    Cart{" "}
-                    <span className="badge badge-light" id="navbar-badge-count">
-                      100
-                    </span>
-                  </button>
+                  {!userLoggedIn && (
+                    <Nav.Link as={Link} to="/login" className="nav-link">
+                      <p>Login</p>
+                    </Nav.Link>
+                  )}
+                  {userLoggedIn && (
+                    <button
+                      type="button"
+                      className="btn text-white"
+                      id="navbar-cart-button"
+                      onClick={() => onShowCart(true)}
+                    >
+                      Cart{" "}
+                      <span
+                        className="badge badge-light"
+                        id="navbar-badge-count"
+                      >
+                        {cartCtx.items.length}
+                      </span>
+                    </button>
+                  )}
                 </Container>
               </Navbar>
             </Col>

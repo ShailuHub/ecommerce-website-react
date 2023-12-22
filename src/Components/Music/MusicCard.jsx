@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 const MusicCard = (props) => {
-  const { title, imageUrl, price, id } = props.details;
+  const { title, imageUrl, price, id, delPrice } = props.details;
+  const [beforAddToCartBtn, setAddToCartBtn] = useState(true);
+  const handleAddToCart = () => {
+    if (props.onAddToCart) {
+      props.onAddToCart({
+        title: title,
+        imageUrl: imageUrl,
+        price: price,
+        id: id,
+      });
+    }
+    setAddToCartBtn(false);
+  };
+
   return (
     <React.Fragment>
       <Card>
@@ -10,7 +23,7 @@ const MusicCard = (props) => {
         </Card.Header>
         <Card.Img src={imageUrl}></Card.Img>
         <Card.Body>
-          <Card.Title>Hello</Card.Title>
+          <Card.Title>{title}</Card.Title>
           <Card.Subtitle></Card.Subtitle>
           <Card.Text></Card.Text>
         </Card.Body>
@@ -19,12 +32,26 @@ const MusicCard = (props) => {
             <p className="mb-0 fs-4 d-flex flex-column">
               <span className="fw-bold">Price</span>{" "}
               <span>
-                &#8377; 400 <del> &#8377; 600</del>
+                &#8377; {price} <del> &#8377; {delPrice}</del>
               </span>
             </p>
-            <Button variant="success" className="text-uppercase fs-5">
-              add to cart
-            </Button>
+            {beforAddToCartBtn ? (
+              <Button
+                variant="success"
+                className="text-uppercase fs-5"
+                onClick={handleAddToCart}
+              >
+                add to cart
+              </Button>
+            ) : (
+              <Button
+                variant="success"
+                className="text-uppercase fs-5 disabled"
+                onClick={handleAddToCart}
+              >
+                added to cart
+              </Button>
+            )}
           </div>
         </Card.Footer>
       </Card>

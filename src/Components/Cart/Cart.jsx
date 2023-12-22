@@ -1,29 +1,11 @@
-import React from "react";
+import { useContext } from "react";
 import CartItem from "./CartItem";
 import "./CartItem.css";
 import Modal from "../Modals/Modal";
+import cartContext from "../../Store/cart-context";
 
-const cartItems = [
-  {
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
 const Cart = ({ onShowCart }) => {
+  const cartCtx = useContext(cartContext);
   return (
     <Modal>
       <div className="container cart-section">
@@ -44,13 +26,14 @@ const Cart = ({ onShowCart }) => {
             </h2>
           </div>
           <div className="cart-container-item">
-            {cartItems.map((item, idx) => {
+            {cartCtx.items.map((item, idx) => {
+              console.log(item);
               return <CartItem details={item} key={idx} />;
             })}
           </div>
           <div className="cart-total-price">
             <span>Total</span>
-            <span>Rs. 50</span>
+            <span>Rs. {cartCtx.totalPrice}</span>
           </div>
           <button className="place-order-btn">place order</button>
         </div>

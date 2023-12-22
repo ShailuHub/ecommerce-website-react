@@ -2,9 +2,10 @@ import { createPortal } from "react-dom";
 import React from "react";
 import "./Modal.css";
 
-const Backdrop = (props) => {
+const Backdrop = () => {
   return <div className="backdrop"></div>;
 };
+
 const ModalOverlay = (props) => {
   return (
     <React.Fragment>

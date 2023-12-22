@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CartItem.css";
+import cartContext from "../../Store/cart-context";
 
 const CartItem = (props) => {
-  const { title, imageUrl, quantity, price } = props.details;
+  const cartCtx = useContext(cartContext);
+  const { id, title, imageUrl, quantity, price } = props.details;
+  const handleOnRemove = () => {
+    cartCtx.deleteItem(id);
+  };
+  const handleOnIncrement = () => {
+    cartCtx.updateQuantity(id, "increment");
+  };
+  const handleOnDecrement = () => {
+    cartCtx.updateQuantity(id, "decrement");
+  };
   return (
     <React.Fragment>
       <div className="d-flex cart-image-container">
@@ -23,11 +34,15 @@ const CartItem = (props) => {
           >
             <p className="text-xl mb-0">Qty: </p>
             <div className="d-flex justify-content-center align-items-center gap-3">
-              <button className="btn btn-success ">-</button>
+              <button className="btn btn-success " onClick={handleOnDecrement}>
+                -
+              </button>
               <span className="badge badge-light bg-white text-black d-flex align-items-center justify-content-center">
                 {quantity}
               </span>
-              <button className="btn btn-success ">+</button>
+              <button className="btn btn-success " onClick={handleOnIncrement}>
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -35,7 +50,9 @@ const CartItem = (props) => {
           <p className="fs-3">
             <span style={{ color: "var(--green-color)" }}>Rs. {price}</span>
           </p>
-          <button id="remove-button">- remove</button>
+          <button id="remove-button" onClick={handleOnRemove}>
+            - remove
+          </button>
         </div>
       </div>
       <hr />
