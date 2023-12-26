@@ -5,28 +5,24 @@ import cartContext from "../../Store/cart-context";
 
 const productsArr = [
   {
-    id: 1,
     title: "Colors",
     price: 100,
     delPrice: 150,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
   {
-    id: 2,
     title: "Black and white Colors",
     price: 50,
     delPrice: 75,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
   },
   {
-    id: 3,
     title: "Yellow and Black Colors",
     price: 70,
     delPrice: 85,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
   },
   {
-    id: 4,
     title: "Blue Color",
     price: 100,
     delPrice: 110,
@@ -36,7 +32,7 @@ const productsArr = [
 
 const MusicItems = () => {
   const cartCtx = useContext(cartContext);
-  const handleOnAddToCart = (itemDetails) => {
+  const handleOnAddToCart = async (itemDetails) => {
     cartCtx.addItem(itemDetails);
   };
 

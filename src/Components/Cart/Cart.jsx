@@ -26,9 +26,8 @@ const Cart = ({ onShowCart }) => {
             </h2>
           </div>
           <div className="cart-container-item">
-            {cartCtx.items.map((item, idx) => {
-              console.log(item);
-              return <CartItem details={item} key={idx} />;
+            {cartCtx.items.map((item) => {
+              return <CartItem details={item} key={item._id} />;
             })}
           </div>
           <div className="cart-total-price">

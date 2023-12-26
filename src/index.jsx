@@ -5,13 +5,18 @@ import "./index.css";
 import "react-bootstrap/dist/react-bootstrap"; // Import react-bootstrap
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from "react-router-dom";
-import { AtuhContextProvider } from "./Store/auth-context.jsx";
+import {
+  CartContextProvider,
+  AuthContextProvider,
+} from "./Store/ContextProvider.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AtuhContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </AtuhContextProvider>
+    <CartContextProvider>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AuthContextProvider>
+    </CartContextProvider>
   </React.StrictMode>
 );

@@ -4,15 +4,16 @@ import cartContext from "../../Store/cart-context";
 
 const CartItem = (props) => {
   const cartCtx = useContext(cartContext);
-  const { id, title, imageUrl, quantity, price } = props.details;
+  const { title, imageUrl, quantity, price } = props.details.itemDetails;
+  const _id = props.details._id;
   const handleOnRemove = () => {
-    cartCtx.deleteItem(id);
+    cartCtx.deleteItem(_id);
   };
   const handleOnIncrement = () => {
-    cartCtx.updateQuantity(id, "increment");
+    cartCtx.updateQuantity(_id, "increment");
   };
   const handleOnDecrement = () => {
-    cartCtx.updateQuantity(id, "decrement");
+    cartCtx.updateQuantity(_id, "decrement");
   };
   return (
     <React.Fragment>
@@ -40,7 +41,7 @@ const CartItem = (props) => {
               <span className="badge badge-light bg-white text-black d-flex align-items-center justify-content-center">
                 {quantity}
               </span>
-              <button className="btn btn-success " onClick={handleOnIncrement}>
+              <button className="btn btn-success" onClick={handleOnIncrement}>
                 +
               </button>
             </div>

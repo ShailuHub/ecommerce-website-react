@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-#navbar-cart-button {
+#cart-logout-button .navbar-cart-button {
   background-color: var(--secondary-color);
   font-size: 2rem;
 }
@@ -42,4 +42,9 @@
   background-color: var(--white-color);
   color: var(--heading-color-primary);
   padding: 0.5rem;
+}
+
+#cart-logout-button {
+  display: flex;
+  gap: 2rem;
 }

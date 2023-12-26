@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import AuthContext from "../../Store/auth-context";
+import cartContext from "../../Store/cart-context";
 const MusicCard = (props) => {
+  const authCtx = useContext(AuthContext);
   const { title, imageUrl, price, id, delPrice } = props.details;
   const [beforAddToCartBtn, setAddToCartBtn] = useState(true);
-  const handleAddToCart = () => {
+  const cartCtx = useContext(cartContext);
+  const isInCart = cartCtx.items.some(
+    (item) => item.itemDetails.imageUrl === imageUrl
+  );
+  const handleAddToCart = async () => {
+    let itemDetails = {
+      title: title,
+      imageUrl: imageUrl,
+      price: price,
+    };
     if (props.onAddToCart) {
-      props.onAddToCart({
-        title: title,
-        imageUrl: imageUrl,
-        price: price,
-        id: id,
-      });
+      props.onAddToCart(itemDetails);
     }
     setAddToCartBtn(false);
   };
@@ -35,7 +42,7 @@ const MusicCard = (props) => {
                 &#8377; {price} <del> &#8377; {delPrice}</del>
               </span>
             </p>
-            {beforAddToCartBtn ? (
+            {beforAddToCartBtn && !isInCart ? (
               <Button
                 variant="success"
                 className="text-uppercase fs-5"
@@ -47,7 +54,6 @@ const MusicCard = (props) => {
               <Button
                 variant="success"
                 className="text-uppercase fs-5 disabled"
-                onClick={handleAddToCart}
               >
                 added to cart
               </Button>

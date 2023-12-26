@@ -10,6 +10,9 @@ const Header = ({ onShowCart }) => {
   const cartCtx = useContext(cartContext);
   const authCtx = useContext(AuthContext);
   const userLoggedIn = authCtx.isLoggedIn;
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
   return (
     <React.Fragment>
       <Container fluid className="header-container">
@@ -41,20 +44,29 @@ const Header = ({ onShowCart }) => {
                     </Nav.Link>
                   )}
                   {userLoggedIn && (
-                    <button
-                      type="button"
-                      className="btn text-white"
-                      id="navbar-cart-button"
-                      onClick={() => onShowCart(true)}
-                    >
-                      Cart{" "}
-                      <span
-                        className="badge badge-light"
-                        id="navbar-badge-count"
+                    <div id="cart-logout-button">
+                      <button
+                        type="button"
+                        className="btn text-white navbar-cart-button"
+                        onClick={logoutHandler}
                       >
-                        {cartCtx.items.length}
-                      </span>
-                    </button>
+                        Logout
+                      </button>
+                      <button
+                        type="button"
+                        className="btn text-white navbar-cart-button"
+                        id="navbar-cart-button"
+                        onClick={() => onShowCart(true)}
+                      >
+                        Cart{" "}
+                        <span
+                          className="badge badge-light"
+                          id="navbar-badge-count"
+                        >
+                          {cartCtx.items ? cartCtx.items.length : 0}
+                        </span>
+                      </button>
+                    </div>
                   )}
                 </Container>
               </Navbar>

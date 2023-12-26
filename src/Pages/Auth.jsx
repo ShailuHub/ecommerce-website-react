@@ -38,7 +38,7 @@ const Auth = () => {
           },
         }
       );
-      authCtx.login(response.data.idToken);
+      authCtx.login(response.data.idToken, response.data.email);
       Navigate("/store");
     } catch (error) {
       if (error && error.response) {
@@ -51,6 +51,7 @@ const Auth = () => {
   const switchAccountModeHandler = () => {
     setLogin((previousState) => !previousState);
   };
+
   return (
     <Layout>
       <div className="form-container container mt-5 ">
